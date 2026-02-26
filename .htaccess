@@ -1,0 +1,29 @@
+# Protect sensitive bridge files from direct web access
+
+<FilesMatch "^(config|db|osticket_api|kanboard_api)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.sqlite$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.log$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Optional: restrict admin page to specific IPs
+# <Files "admin_mappings.php">
+#     Order allow,deny
+#     Allow from 1.2.3.4
+#     Deny from all
+# </Files>
+
+# Optional: restrict cron scripts (not needed via web anyway)
+<FilesMatch "^sync_.*\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
